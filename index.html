@@ -1,0 +1,283 @@
+<title>Hesblan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Hesblan: cantor, desenhista e programador. Criador do LUDUS'BAN e do Banpaint.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&family=Caveat:wght@600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: caderno quadriculado. O cartão é uma página única e estreita; a wiki abre uma coluna de leitura com anotações à mão na margem. */
+:root{
+  --paper:#EDF0F5; --sheet:#F8F9FC; --ink:#1A2140; --muted:#58607E; --grid:rgba(40,70,140,.075);
+  --marker:#FF3D7F; --marker-soft:rgba(255,61,127,.22); --rule:#CCD3E2;
+  --ludus:#7B4DFF; --banpaint:#13A67A; --work:#E08A00;
+  --f-display:"Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
+  --f-body:"Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-hand:"Caveat", "Comic Sans MS", cursive;
+  --f-mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#11152A; --sheet:#181D36; --ink:#E7EAF6; --muted:#A1A8C6; --grid:rgba(150,170,255,.07);
+  --marker:#FF6B9C; --marker-soft:rgba(255,107,156,.28); --rule:#2C3355;
+  --ludus:#A98BFF; --banpaint:#3FD3A2; --work:#FFB547; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --paper:#11152A; --sheet:#181D36; --ink:#E7EAF6; --muted:#A1A8C6; --grid:rgba(150,170,255,.07);
+  --marker:#FF6B9C; --marker-soft:rgba(255,107,156,.28); --rule:#2C3355;
+  --ludus:#A98BFF; --banpaint:#3FD3A2; --work:#FFB547; color-scheme:dark }
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{
+  background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;
+  color:var(--ink); font:400 17px/1.6 var(--f-body);
+  padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:0;
+}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:3px solid var(--marker);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:var(--f-display);font-weight:800;line-height:1.08;text-wrap:balance;margin:0}
+p{margin:0}
+.hl{background:linear-gradient(transparent 58%,var(--marker-soft) 58%,var(--marker-soft) 92%,transparent 92%);padding:0 .08em}
+.hand{font-family:var(--f-hand);font-weight:600;color:var(--marker);font-size:1.35rem;line-height:1.1}
+.tag{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- Cartão ---------- */
+#cartao{max-width:440px;margin:0 auto;padding-block:48px 56px;display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center}
+.avatar{width:112px;height:112px;border-radius:50%;background:var(--sheet);border:2px solid var(--ink);display:grid;place-items:center;
+  font:800 3.2rem/1 var(--f-display);position:relative;box-shadow:5px 5px 0 var(--marker)}
+.avatar small{position:absolute;top:8px;left:calc(100% + 14px);transform:rotate(-6deg);white-space:nowrap}
+#cartao h1{font-size:clamp(2.6rem,10vw,3.4rem);letter-spacing:-.02em}
+.lead{color:var(--muted);max-width:34ch}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;padding:0;margin:0;list-style:none}
+.chips li{font-family:var(--f-mono);font-size:.78rem;padding:5px 11px;border:1.5px solid var(--rule);border-radius:999px;background:var(--sheet)}
+.links{width:100%;display:flex;flex-direction:column;gap:12px}
+.btn{display:flex;align-items:center;gap:14px;width:100%;text-align:left;text-decoration:none;
+  background:var(--sheet);border:2px solid var(--ink);border-radius:14px;padding:12px 16px;
+  box-shadow:4px 4px 0 var(--ink);transition:transform .15s ease,box-shadow .15s ease;font:inherit;color:inherit;cursor:pointer}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.btn img,.btn .ico{width:40px;height:40px;flex:none;border-radius:10px;object-fit:contain}
+.btn .ico{display:grid;place-items:center;font:800 1.2rem/1 var(--f-display);color:var(--sheet);background:var(--ink)}
+.btn b{display:block;font-family:var(--f-display);font-size:1.05rem}
+.btn span{display:block;font-size:.85rem;color:var(--muted);line-height:1.35}
+.btn .txt{min-width:0;flex:1}
+.btn.primary{background:var(--marker);color:#fff;border-color:var(--ink)}
+.btn.primary span{color:rgba(255,255,255,.88)}
+.btn.primary .ico{background:#fff;color:var(--marker)}
+.btn.todo{border-style:dashed;box-shadow:none;cursor:default}
+.btn.todo:hover{transform:none}
+.foot{font-size:.8rem;color:var(--muted)}
+
+/* ---------- Wiki ---------- */
+#wiki{max-width:1040px;margin:0 auto;padding-block:0 72px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:2px solid var(--ink);
+  display:flex;align-items:center;gap:16px;padding-block:12px;flex-wrap:wrap}
+.topbar a.me{font:800 1.25rem/1 var(--f-display);text-decoration:none}
+.topbar nav{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+.topbar nav a{font-family:var(--f-mono);font-size:.78rem;text-decoration:none;padding:6px 10px;border-radius:8px}
+.topbar nav a:hover{background:var(--marker-soft)}
+.intro{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:40px;padding-block:56px 40px;align-items:end}
+.intro h1{font-size:clamp(2.4rem,6.5vw,4.6rem);letter-spacing:-.025em}
+.intro p{margin-top:18px;max-width:60ch;color:var(--muted);font-size:1.1rem}
+.fichas{border:2px solid var(--ink);background:var(--sheet);border-radius:4px;padding:18px 20px;display:grid;gap:10px;position:relative}
+.fichas::before{content:"ficha";position:absolute;top:-14px;left:16px;background:var(--paper);padding:0 6px;font-family:var(--f-hand);font-size:1.3rem;color:var(--marker)}
+.fichas dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 16px}
+.fichas dt{font-family:var(--f-mono);font-size:.74rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding-top:3px}
+.fichas dd{margin:0;font-weight:700}
+#sobre,section.bloco{scroll-margin-top:80px}
+section.bloco{padding-block:40px;border-top:1.5px dashed var(--rule);display:grid;gap:24px}
+.bloco-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.bloco-head h2{font-size:clamp(1.7rem,4vw,2.3rem)}
+.proj{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start;background:var(--sheet);
+  border:2px solid var(--ink);border-radius:18px;padding:24px;box-shadow:6px 6px 0 var(--c,var(--ink))}
+.proj + .proj{margin-top:8px}
+.proj .media{border-radius:12px;overflow:hidden;border:1.5px solid var(--rule);background:var(--paper);display:grid;place-items:center;min-height:200px}
+.proj .media img{display:block;width:100%;height:100%;object-fit:cover}
+.proj .media.logo img{width:auto;max-width:70%;max-height:180px;object-fit:contain;padding:20px}
+.proj h3{font-size:1.9rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.proj .pill{font-family:var(--f-mono);font-size:.7rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:var(--sheet);background:var(--c)}
+.proj p{margin-top:10px}
+.proj ul{margin:14px 0 0;padding-left:1.1em;display:grid;gap:4px}
+.proj ul li::marker{color:var(--c)}
+.proj .acoes{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.proj .acoes a{font-family:var(--f-mono);font-size:.82rem;text-decoration:none;padding:8px 14px;border:2px solid var(--ink);border-radius:10px;background:var(--paper)}
+.proj .acoes a.go{background:var(--c);color:#fff;border-color:var(--ink)}
+.proj .acoes a:hover{transform:translate(-1px,-1px)}
+.proj .meta{margin-top:14px;font-family:var(--f-mono);font-size:.76rem;color:var(--muted)}
+.areas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px}
+.area{border:1.5px solid var(--rule);border-radius:14px;padding:18px 20px;background:var(--sheet);display:grid;gap:8px;align-content:start}
+.area h3{font-size:1.35rem}
+.area p{color:var(--muted);font-size:.95rem}
+.area .vazio{margin-top:6px;font-family:var(--f-hand);font-size:1.25rem;color:var(--marker);line-height:1.15}
+.contato{display:flex;flex-wrap:wrap;gap:12px}
+.contato .btn{width:auto;flex:1 1 240px}
+.back{font-family:var(--f-mono);font-size:.8rem}
+
+@media (max-width:760px){
+  .intro{grid-template-columns:1fr;gap:28px;padding-block:36px 24px}
+  .proj{grid-template-columns:1fr;padding:18px}
+  .topbar nav{margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<!-- ================= CARTÃO ================= -->
+<main id="cartao" aria-label="Cartão de visitas">
+  <div class="avatar" aria-hidden="true">H<small class="hand">sua foto aqui!</small></div>
+  <div style="display:grid;gap:10px">
+    <h1><span class="hl">Hesblan</span></h1>
+    <p class="lead">Canto, desenho e programo. Faço jogos e ferramentas criativas que rodam direto no navegador.</p>
+  </div>
+  <ul class="chips" aria-label="Interesses">
+    <li>canto</li><li>desenho</li><li>programação</li><li>jogos</li><li>cozinha</li>
+  </ul>
+  <div class="links">
+    <a class="btn" href="https://ludus-ban.hesblan-jobs.workers.dev" target="_blank" rel="noopener">
+      <img src="assets/ludus-logo.svg" alt="">
+      <span class="txt"><b>LUDUS'BAN</b><span>Fliperama neon com mais de 50 jogos e um RPG online</span></span>
+    </a>
+    <a class="btn" href="https://hesblan.github.io/banpaint/" target="_blank" rel="noopener">
+      <img src="assets/banpaint-coelho.svg" alt="">
+      <span class="txt"><b>Banpaint</b><span>App de desenho grátis, sem anúncio e sem cadastro</span></span>
+    </a>
+    <a class="btn primary" href="#wiki">
+      <span class="ico" aria-hidden="true">W</span>
+      <span class="txt"><b>Minha wiki</b><span>Tudo o que eu crio, organizado por área</span></span>
+    </a>
+    <div class="btn todo" aria-label="Contato, ainda a preencher">
+      <span class="ico" aria-hidden="true">@</span>
+      <span class="txt"><b>Contato</b><span>E-mail, Instagram e redes entram aqui</span></span>
+    </div>
+  </div>
+  <p class="foot">Feito à mão, com código.</p>
+</main>
+
+<!-- ================= WIKI ================= -->
+<div id="wiki" hidden>
+  <header class="topbar">
+    <a class="me" href="#cartao" aria-label="Voltar ao cartão">Hesblan</a>
+    <nav aria-label="Seções da wiki">
+      <a href="#wiki" data-go="sobre">sobre</a>
+      <a href="#wiki" data-go="projetos">projetos</a>
+      <a href="#wiki" data-go="areas">áreas</a>
+      <a href="#wiki" data-go="contato">contato</a>
+    </nav>
+  </header>
+
+  <section class="intro" id="sobre">
+    <div>
+      <p class="hand">a wiki particular de</p>
+      <h1>Um lugar só para tudo o que eu <span class="hl">invento</span>.</h1>
+      <p>Sou apaixonado por arte. Canto, desenho e, nas horas vagas, cozinho, jogo e programo. Esta página junta os meus projetos, as minhas criações e o que eu ando aprendendo.</p>
+    </div>
+    <aside class="fichas" aria-label="Ficha rápida">
+      <dl>
+        <dt>Faço</dt><dd>Jogos, apps e ilustração</dd>
+        <dt>Arte</dt><dd>Canto e desenho</dd>
+        <dt>Hobbies</dt><dd>Cozinha, jogos, código</dd>
+        <dt>Destaques</dt><dd>LUDUS'BAN, Banpaint</dd>
+      </dl>
+    </aside>
+  </section>
+
+  <section class="bloco" id="projetos">
+    <div class="bloco-head"><h2>Projetos</h2><span class="hand">os que eu mais gosto de mostrar</span></div>
+
+    <article class="proj" style="--c:var(--ludus)">
+      <div class="media"><img src="assets/ludus-online.jpg" alt="Arte de capa do LUDUS Online: três heróis em pixel art numa praça à noite, com a Torre de Ludus ao fundo"></div>
+      <div>
+        <h3>LUDUS'BAN <span class="pill">beta</span></h3>
+        <p>Um fliperama em pixel art neon que também é rede social de jogos. Abre no navegador e pode ser instalado como app.</p>
+        <ul>
+          <li>Mais de 50 jogos: clássicos, casuais, de mesa e duelos online 1x1</li>
+          <li>Feed, chat, clãs, histórias e loja de cosméticos</li>
+          <li>LUDUS Online, um RPG com 5 classes, subclasses no nível 20 e a Cidade de Lumen</li>
+          <li>Servidor próprio no Cloudflare, rodando no plano grátis</li>
+        </ul>
+        <div class="acoes">
+          <a class="go" href="https://ludus-ban.hesblan-jobs.workers.dev" target="_blank" rel="noopener">Jogar agora</a>
+          <a href="https://github.com/hesblan/LUDUS-BAN" target="_blank" rel="noopener">Código</a>
+        </div>
+        <p class="meta">versão V0.1.68 · out/2026 · JavaScript, Vite, Cloudflare Workers</p>
+      </div>
+    </article>
+
+    <article class="proj" style="--c:var(--banpaint)">
+      <div class="media logo"><img src="assets/banpaint-logo.svg" alt="Logo do Banpaint"></div>
+      <div>
+        <h3>Banpaint <span class="pill">grátis</span></h3>
+        <p>App de desenho e edição de fotos que roda no navegador, no celular e no computador. Sem anúncio, sem cadastro e funciona offline.</p>
+        <ul>
+          <li>16 pincéis prontos, de nanquim a tinta a óleo que mistura as cores</li>
+          <li>Camadas em pastas, máscaras e 17 modos de mesclagem</li>
+          <li>Réguas de perspectiva, boneco 3D de referência e modelos de quadrinhos</li>
+          <li>Animação quadro a quadro, timelapse e exportação em PSD com camadas</li>
+        </ul>
+        <div class="acoes">
+          <a class="go" href="https://hesblan.github.io/banpaint/" target="_blank" rel="noopener">Abrir o app</a>
+          <a href="https://github.com/hesblan/banpaint" target="_blank" rel="noopener">Código</a>
+        </div>
+        <p class="meta">JavaScript puro com Canvas 2D · sem framework · GitHub Pages</p>
+      </div>
+    </article>
+
+    <article class="proj" style="--c:var(--work)">
+      <div class="media" aria-hidden="true"><span class="hand" style="font-size:2rem;text-align:center;padding:24px">passo 1 → passo 2 → pronto ✓</span></div>
+      <div>
+        <h3>Base de conhecimento <span class="pill">trabalho</span></h3>
+        <p>Um site interno para uma equipe de logística, com os procedimentos do dia a dia explicados passo a passo, com capturas de tela.</p>
+        <ul>
+          <li>Procedimentos (POPs) ilustrados, com erros comuns e quando pedir ajuda</li>
+          <li>Editor próprio para a equipe escrever novos procedimentos</li>
+          <li>Acesso com aprovação de conta</li>
+        </ul>
+        <p class="meta">projeto interno · demonstração sob consulta</p>
+      </div>
+    </article>
+  </section>
+
+  <section class="bloco" id="areas">
+    <div class="bloco-head"><h2>Áreas</h2><span class="hand">cada uma vira uma página</span></div>
+    <div class="areas">
+      <div class="area"><p class="tag">arte</p><h3>Música</h3><p>As músicas que eu canto, gravações e apresentações.</p><p class="vazio">em breve: links das gravações</p></div>
+      <div class="area"><p class="tag">arte</p><h3>Desenho</h3><p>Galeria de ilustrações, estudos e personagens. Boa parte nasce no Banpaint.</p><p class="vazio">em breve: galeria de desenhos</p></div>
+      <div class="area"><p class="tag">código</p><h3>Programação</h3><p>Jogos e ferramentas para o navegador, do pixel ao servidor.</p><p class="vazio">LUDUS'BAN, Banpaint e o que vier</p></div>
+      <div class="area"><p class="tag">hobby</p><h3>Jogos</h3><p>O que eu ando jogando e o que me inspira nos jogos que eu faço.</p><p class="vazio">em breve: lista de favoritos</p></div>
+      <div class="area"><p class="tag">hobby</p><h3>Cozinha</h3><p>Receitas que eu gosto de fazer e testar.</p><p class="vazio">em breve: caderno de receitas</p></div>
+    </div>
+  </section>
+
+  <section class="bloco" id="contato">
+    <div class="bloco-head"><h2>Contato</h2><span class="hand">bora criar junto?</span></div>
+    <p style="max-width:60ch;color:var(--muted)">Quer um jogo, uma ferramenta, uma ilustração ou uma apresentação? Fale comigo.</p>
+    <div class="contato">
+      <div class="btn todo"><span class="ico" aria-hidden="true">@</span><span class="txt"><b>E-mail</b><span>a preencher</span></span></div>
+      <div class="btn todo"><span class="ico" aria-hidden="true">IG</span><span class="txt"><b>Instagram</b><span>a preencher</span></span></div>
+      <a class="btn" href="https://github.com/hesblan" target="_blank" rel="noopener"><span class="ico" aria-hidden="true">GH</span><span class="txt"><b>GitHub</b><span>github.com/hesblan</span></span></a>
+    </div>
+    <a class="back" href="#cartao">← voltar ao cartão</a>
+  </section>
+</div>
+
+<script>
+(function(){
+  var cartao=document.getElementById('cartao'), wiki=document.getElementById('wiki');
+  function show(){
+    var w=location.hash==='#wiki';
+    cartao.hidden=w; wiki.hidden=!w;
+    document.title=w?'Hesblan · wiki':'Hesblan';
+    if(!pending) window.scrollTo(0,0);
+  }
+  var pending=null;
+  document.querySelectorAll('[data-go]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var el=document.getElementById(a.getAttribute('data-go'));
+      if(el) el.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+    });
+  });
+  window.addEventListener('hashchange',show); show();
+})();
+</script>
