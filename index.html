@@ -1,6 +1,6 @@
 <title>Hesblan</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Hesblan: cantor, desenhista e programador. Criador do LUDUS'BAN e do Banpaint.">
+<meta name="description" content="Hesblan: cantor, desenhista e programador. Criador do LUDUS'BAN, do Banpaint e do Kit de Bolso.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&family=Caveat:wght@600&family=JetBrains+Mono:wght@500&display=swap">
@@ -9,7 +9,7 @@
 :root{
   --paper:#EDF0F5; --sheet:#F8F9FC; --ink:#1A2140; --muted:#58607E; --grid:rgba(40,70,140,.075);
   --marker:#FF3D7F; --marker-soft:rgba(255,61,127,.22); --rule:#CCD3E2;
-  --ludus:#7B4DFF; --banpaint:#13A67A; --work:#E08A00;
+  --ludus:#7B4DFF; --banpaint:#13A67A; --work:#E08A00; --kit:#1F6FD1;
   --f-display:"Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
   --f-body:"Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
   --f-hand:"Caveat", "Comic Sans MS", cursive;
@@ -18,11 +18,11 @@
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --paper:#11152A; --sheet:#181D36; --ink:#E7EAF6; --muted:#A1A8C6; --grid:rgba(150,170,255,.07);
   --marker:#FF6B9C; --marker-soft:rgba(255,107,156,.28); --rule:#2C3355;
-  --ludus:#A98BFF; --banpaint:#3FD3A2; --work:#FFB547; color-scheme:dark }}
+  --ludus:#A98BFF; --banpaint:#3FD3A2; --work:#FFB547; --kit:#62A8FF; color-scheme:dark }}
 :root[data-theme="dark"]{
   --paper:#11152A; --sheet:#181D36; --ink:#E7EAF6; --muted:#A1A8C6; --grid:rgba(150,170,255,.07);
   --marker:#FF6B9C; --marker-soft:rgba(255,107,156,.28); --rule:#2C3355;
-  --ludus:#A98BFF; --banpaint:#3FD3A2; --work:#FFB547; color-scheme:dark }
+  --ludus:#A98BFF; --banpaint:#3FD3A2; --work:#FFB547; --kit:#62A8FF; color-scheme:dark }
 
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -106,6 +106,13 @@ section.bloco{padding-block:40px;border-top:1.5px dashed var(--rule);display:gri
 .proj .acoes a.go{background:var(--c);color:#fff;border-color:var(--ink)}
 .proj .acoes a:hover{transform:translate(-1px,-1px)}
 .proj .meta{margin-top:14px;font-family:var(--f-mono);font-size:.76rem;color:var(--muted)}
+.entregas{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px;margin-top:4px;padding-top:20px;border-top:1.5px dashed var(--rule)}
+.entregas h4{grid-column:1/-1;margin:0;font:600 1.35rem/1.1 var(--f-hand);color:var(--c)}
+.entrega{border:1.5px solid var(--rule);border-left:4px solid var(--c);border-radius:10px;padding:12px 14px;background:var(--paper)}
+.entrega b{display:block;font-family:var(--f-display);font-size:1rem}
+.entrega p{margin:4px 0 0;font-size:.88rem;color:var(--muted);line-height:1.45}
+.term{width:100%;align-self:stretch;margin:0;padding:18px 20px;background:#0E1424;color:#CFE3FF;font:500 .8rem/1.7 var(--f-mono);white-space:pre-wrap;overflow-wrap:anywhere;text-align:left}
+.term .ok{color:#5BE3A1}.term .warn{color:#FFC861}.term .dim{color:#7C8AA8}
 .areas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px}
 .area{border:1.5px solid var(--rule);border-radius:14px;padding:18px 20px;background:var(--sheet);display:grid;gap:8px;align-content:start}
 .area h3{font-size:1.35rem}
@@ -118,6 +125,7 @@ section.bloco{padding-block:40px;border-top:1.5px dashed var(--rule);display:gri
 @media (max-width:760px){
   .intro{grid-template-columns:1fr;gap:28px;padding-block:36px 24px}
   .proj{grid-template-columns:1fr;padding:18px}
+  .term{font-size:.68rem;padding:14px}
   .topbar nav{margin-left:0}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -145,6 +153,10 @@ section.bloco{padding-block:40px;border-top:1.5px dashed var(--rule);display:gri
     <a class="btn primary" href="#wiki">
       <span class="ico" aria-hidden="true">W</span>
       <span class="txt"><b>Minha wiki</b><span>Tudo o que eu crio, organizado por área</span></span>
+    </a>
+    <a class="btn" href="https://www.linkedin.com/in/hesblan/" target="_blank" rel="noopener">
+      <span class="ico" aria-hidden="true">in</span>
+      <span class="txt"><b>LinkedIn</b><span>Sites, sistemas internos e automações sob medida</span></span>
     </a>
     <div class="btn todo" aria-label="Contato, ainda a preencher">
       <span class="ico" aria-hidden="true">@</span>
@@ -177,7 +189,7 @@ section.bloco{padding-block:40px;border-top:1.5px dashed var(--rule);display:gri
         <dt>Faço</dt><dd>Jogos, apps e ilustração</dd>
         <dt>Arte</dt><dd>Canto e desenho</dd>
         <dt>Hobbies</dt><dd>Cozinha, jogos, código</dd>
-        <dt>Destaques</dt><dd>LUDUS'BAN, Banpaint</dd>
+        <dt>Destaques</dt><dd>LUDUS'BAN, Banpaint, Kit de Bolso</dd>
       </dl>
     </aside>
   </section>
@@ -189,18 +201,21 @@ section.bloco{padding-block:40px;border-top:1.5px dashed var(--rule);display:gri
       <div class="media"><img src="assets/ludus-online.jpg" alt="Arte de capa do LUDUS Online: três heróis em pixel art numa praça à noite, com a Torre de Ludus ao fundo"></div>
       <div>
         <h3>LUDUS'BAN <span class="pill">beta</span></h3>
-        <p>Um fliperama em pixel art neon que também é rede social de jogos. Abre no navegador e pode ser instalado como app.</p>
-        <ul>
-          <li>Mais de 50 jogos: clássicos, casuais, de mesa e duelos online 1x1</li>
-          <li>Feed, chat, clãs, histórias e loja de cosméticos</li>
-          <li>LUDUS Online, um RPG com 5 classes, subclasses no nível 20 e a Cidade de Lumen</li>
-          <li>Servidor próprio no Cloudflare, rodando no plano grátis</li>
-        </ul>
+        <p>Um fliperama em pixel art neon que também é rede social de jogos, com contas, pagamentos e servidor próprio. Abre no navegador e pode ser instalado como app no celular e no PC.</p>
+        <p>É o meu maior projeto: planejado, construído, publicado e mantido por mim, do visual ao servidor, com mais de 110 entregas desde outubro.</p>
         <div class="acoes">
           <a class="go" href="https://ludus-ban.hesblan-jobs.workers.dev" target="_blank" rel="noopener">Jogar agora</a>
-          <a href="https://github.com/hesblan/LUDUS-BAN" target="_blank" rel="noopener">Código</a>
         </div>
-        <p class="meta">versão V0.1.68 · out/2026 · JavaScript, Vite, Cloudflare Workers</p>
+        <p class="meta">versão V0.1.69 · nov/2026 · JavaScript, Vite, Cloudflare Workers, SQLite · código privado</p>
+      </div>
+      <div class="entregas">
+        <h4>o que tem dentro</h4>
+        <div class="entrega"><b>Fliperama com 54 jogos</b><p>Clássicos, casuais, 12 jogos de mesa por turnos e duelos online 1x1 ao vivo, como Pong, Tetris Duelo e Arena Snake.</p></div>
+        <div class="entrega"><b>Rede social completa</b><p>Feed, chat com abas e mídia, clãs, comunidades, histórias de 30 s, perfil com mural e depoimentos.</p></div>
+        <div class="entrega"><b>Pagamentos reais</b><p>Loja com Pix e cartão pelo Mercado Pago, assinatura Premium e saldo conferido só no servidor.</p></div>
+        <div class="entrega"><b>RPG LUDUS Online</b><p>Classes e subclasses, mapas ligados, chefões, forja, mochila e duelo 1x1 conferido no servidor.</p></div>
+        <div class="entrega"><b>Moderação e suporte</b><p>Painel do dono e dos moderadores, travas anti-spam, recordes protegidos e respostas prontas no suporte.</p></div>
+        <div class="entrega"><b>Operação e LGPD</b><p>App instalável que funciona offline, testes automáticos, monitoramento de erros, backup diário e Política de Privacidade.</p></div>
       </div>
     </article>
 
@@ -220,6 +235,31 @@ section.bloco{padding-block:40px;border-top:1.5px dashed var(--rule);display:gri
           <a href="https://github.com/hesblan/banpaint" target="_blank" rel="noopener">Código</a>
         </div>
         <p class="meta">JavaScript puro com Canvas 2D · sem framework · GitHub Pages</p>
+      </div>
+    </article>
+
+    <article class="proj" style="--c:var(--kit)">
+      <div class="media" aria-hidden="true"><pre class="term"><span class="dim">~ $</span> kit --lan
+<span class="ok">✓</span> servidor em :8080 (token ativo)
+<span class="dim">~ $</span> inventário da rede
+  192.168.0.1   roteador      <span class="ok">ok</span>
+  192.168.0.23  notebook      <span class="ok">ok</span>
+  192.168.0.41  desconhecido  <span class="warn">novo!</span>
+<span class="warn">⚠</span> alerta: dispositivo novo na rede
+<span class="dim">~ $</span> relatório → PDF · JSON · .pcap</pre></div>
+      <div>
+        <h3>Kit de Bolso do Técnico <span class="pill">open source</span></h3>
+        <p>Ferramenta de diagnóstico de rede e hardware que transforma um celular Android em maleta de técnico, sem root. Um servidor leve em Python roda no próprio aparelho e abre um painel no navegador.</p>
+        <ul>
+          <li>Painel de tráfego ao vivo e captura de pacotes que abre no Wireshark</li>
+          <li>Inventário da rede com alerta de dispositivo novo e detecção de ARP spoofing e DHCP falso</li>
+          <li>nmap, ping, traceroute, DNS, WHOIS, Wi-Fi, 4G/5G e teste de velocidade</li>
+          <li>Testes de tela, touch, câmeras e sensores, com relatório em PDF e JSON</li>
+        </ul>
+        <div class="acoes">
+          <a class="go" href="https://github.com/hesblan/kit-de-bolso" target="_blank" rel="noopener">Ver no GitHub</a>
+        </div>
+        <p class="meta">Python · HTML/JS · Android com Termux · licença MIT</p>
       </div>
     </article>
 
@@ -243,7 +283,7 @@ section.bloco{padding-block:40px;border-top:1.5px dashed var(--rule);display:gri
     <div class="areas">
       <div class="area"><p class="tag">arte</p><h3>Música</h3><p>As músicas que eu canto, gravações e apresentações.</p><p class="vazio">em breve: links das gravações</p></div>
       <div class="area"><p class="tag">arte</p><h3>Desenho</h3><p>Galeria de ilustrações, estudos e personagens. Boa parte nasce no Banpaint.</p><p class="vazio">em breve: galeria de desenhos</p></div>
-      <div class="area"><p class="tag">código</p><h3>Programação</h3><p>Jogos e ferramentas para o navegador, do pixel ao servidor.</p><p class="vazio">LUDUS'BAN, Banpaint e o que vier</p></div>
+      <div class="area"><p class="tag">código</p><h3>Programação</h3><p>Jogos e ferramentas para o navegador, do pixel ao servidor.</p><p class="vazio">LUDUS'BAN, Banpaint, Kit de Bolso e o que vier</p></div>
       <div class="area"><p class="tag">hobby</p><h3>Jogos</h3><p>O que eu ando jogando e o que me inspira nos jogos que eu faço.</p><p class="vazio">em breve: lista de favoritos</p></div>
       <div class="area"><p class="tag">hobby</p><h3>Cozinha</h3><p>Receitas que eu gosto de fazer e testar.</p><p class="vazio">em breve: caderno de receitas</p></div>
     </div>
@@ -255,6 +295,7 @@ section.bloco{padding-block:40px;border-top:1.5px dashed var(--rule);display:gri
     <div class="contato">
       <div class="btn todo"><span class="ico" aria-hidden="true">@</span><span class="txt"><b>E-mail</b><span>a preencher</span></span></div>
       <div class="btn todo"><span class="ico" aria-hidden="true">IG</span><span class="txt"><b>Instagram</b><span>a preencher</span></span></div>
+      <a class="btn" href="https://www.linkedin.com/in/hesblan/" target="_blank" rel="noopener"><span class="ico" aria-hidden="true">in</span><span class="txt"><b>LinkedIn</b><span>linkedin.com/in/hesblan</span></span></a>
       <a class="btn" href="https://github.com/hesblan" target="_blank" rel="noopener"><span class="ico" aria-hidden="true">GH</span><span class="txt"><b>GitHub</b><span>github.com/hesblan</span></span></a>
     </div>
     <a class="back" href="#cartao">← voltar ao cartão</a>
