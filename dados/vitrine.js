@@ -6,9 +6,29 @@
   status:  texto curto que aparece no selo (ex.: "pronto", "beta", "em breve")
   preco:   texto livre (ex.: "R$ 99/mês") ou null
   acoes:   botões; principal: true deixa o botão colorido
+  destaque: true ocupa a largura toda e aparece primeiro
+  mesmaAba: true abre o link na mesma aba (páginas do próprio site)
   placeholder: true marca o item como "a preencher" (aparece tracejado)
 */
 window.VITRINE = [
+  {
+    tipo: "produto",
+    destaque: true,
+    nome: "Kit de Bolso do Técnico",
+    status: "v3.3 · grátis",
+    resumo: "Diagnóstico, defesa e estudo de redes e hardware no próprio celular Android, sem root. Open source, em português, com explicação para cada alerta.",
+    pontos: [
+      "Detecta ARP spoofing, DHCP falso, deauth, Wi-Fi falso e DNS sequestrado",
+      "Auditoria do roteador, inventário da rede e relatórios PDF/JSON/.pcap",
+      "173 testes automatizados e zero dependências externas"
+    ],
+    stack: "Python (só stdlib) · HTML/JS · Termux · licença MIT",
+    preco: "Grátis · adaptação para empresas sob consulta",
+    acoes: [
+      { rotulo: "Ver o case", href: "kit-de-bolso.html", principal: true, mesmaAba: true },
+      { rotulo: "GitHub", href: "https://github.com/hesblan/kit-de-bolso" }
+    ]
+  },
   {
     tipo: "produto",
     nome: "Bantec SaaS Starter",

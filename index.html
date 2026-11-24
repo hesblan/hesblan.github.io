@@ -130,6 +130,8 @@ section.bloco{padding-block:40px;border-top:1.5px dashed var(--rule);display:gri
 .vitrine{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:20px}
 .item{--c:var(--marker);background:var(--sheet);border:2px solid var(--ink);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px;box-shadow:5px 5px 0 var(--c);position:relative}
 .item[data-tipo="servico"]{--c:var(--work)}.item[data-tipo="ideia"]{--c:var(--ludus)}
+.item.dest{grid-column:1/-1;--c:var(--kit)}
+.item.dest h3{font-size:1.9rem}
 .item.ph{border-style:dashed;box-shadow:none;background:transparent}
 .item .topo{display:flex;justify-content:space-between;gap:8px;align-items:center}
 .item .selo{font:500 .68rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:var(--c);color:#fff}
@@ -296,7 +298,8 @@ section.bloco{padding-block:40px;border-top:1.5px dashed var(--rule);display:gri
           <li>Testes de tela, touch, câmeras e sensores, com relatório em PDF e JSON</li>
         </ul>
         <div class="acoes">
-          <a class="go" href="https://github.com/hesblan/kit-de-bolso" target="_blank" rel="noopener">Ver no GitHub</a>
+          <a class="go" href="kit-de-bolso.html">Ver o case</a>
+          <a href="https://github.com/hesblan/kit-de-bolso" target="_blank" rel="noopener">GitHub</a>
         </div>
         <p class="meta">Python · HTML/JS · Android com Termux · licença MIT</p>
       </div>
@@ -348,13 +351,13 @@ section.bloco{padding-block:40px;border-top:1.5px dashed var(--rule);display:gri
   function el(t,c,txt){var e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e}
   var rot={produto:'produto',servico:'serviço',ideia:'ideia'};
   itens.forEach(function(it){
-    var a=el('article','item'+(it.placeholder?' ph':''));a.dataset.tipo=it.tipo;
+    var a=el('article','item'+(it.placeholder?' ph':'')+(it.destaque?' dest':''));a.dataset.tipo=it.tipo;
     var t=el('div','topo');t.append(el('span','tag',rot[it.tipo]||it.tipo),el('span','selo',it.status));a.append(t,el('h3',null,it.nome),el('p','r',it.resumo));
     if(it.pontos&&it.pontos.length){var u=el('ul');it.pontos.forEach(function(p){u.append(el('li',null,p))});a.append(u)}
     if(it.planos){var g=el('div','planos');it.planos.forEach(function(p){var d=el('div');d.append(el('b',null,p.nome),el('span',null,p.preco));g.append(d)});a.append(g)}
     if(it.stack)a.append(el('p','tag',it.stack));
     if(it.preco)a.append(el('p','preco',it.preco));
-    if(it.acoes&&it.acoes.length){var c=el('div','acoes');it.acoes.forEach(function(x){var k=el('a',x.principal?'go':'',x.rotulo);k.href=x.href;k.target='_blank';k.rel='noopener';c.append(k)});a.append(c)}
+    if(it.acoes&&it.acoes.length){var c=el('div','acoes');it.acoes.forEach(function(x){var k=el('a',x.principal?'go':'',x.rotulo);k.href=x.href;if(!x.mesmaAba){k.target='_blank';k.rel='noopener'}c.append(k)});a.append(c)}
     L.append(a);
   });
   document.querySelectorAll('.filtros button').forEach(function(b){b.addEventListener('click',function(){
