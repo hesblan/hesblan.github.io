@@ -130,7 +130,7 @@ section.bloco{padding-block:40px;border-top:1.5px dashed var(--rule);display:gri
 .vitrine{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:20px}
 .item{--c:var(--marker);background:var(--sheet);border:2px solid var(--ink);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px;box-shadow:5px 5px 0 var(--c);position:relative}
 .item[data-tipo="servico"]{--c:var(--work)}.item[data-tipo="ideia"]{--c:var(--ludus)}
-.item.dest{grid-column:1/-1;--c:var(--kit)}
+.item.dest{grid-column:1/-1}
 .item.dest h3{font-size:1.9rem}
 .item.ph{border-style:dashed;box-shadow:none;background:transparent}
 .item .topo{display:flex;justify-content:space-between;gap:8px;align-items:center}
@@ -246,6 +246,7 @@ section.bloco{padding-block:40px;border-top:1.5px dashed var(--rule);display:gri
         <p>É o meu maior projeto: planejado, construído, publicado e mantido por mim, do visual ao servidor, com mais de 110 entregas desde outubro.</p>
         <div class="acoes">
           <a class="go" href="https://ludus-ban.hesblan-jobs.workers.dev" target="_blank" rel="noopener">Jogar agora</a>
+          <a href="ludusban.html">Ver o case</a>
         </div>
         <p class="meta">versão V0.1.69 · nov/2026 · JavaScript, Vite, Cloudflare Workers, SQLite · código privado</p>
       </div>
@@ -274,6 +275,7 @@ section.bloco{padding-block:40px;border-top:1.5px dashed var(--rule);display:gri
         <div class="acoes">
           <a class="go" href="https://hesblan.github.io/banpaint/" target="_blank" rel="noopener">Abrir o app</a>
           <a href="https://github.com/hesblan/banpaint" target="_blank" rel="noopener">Código</a>
+          <a href="banpaint.html">Ver o case</a>
         </div>
         <p class="meta">JavaScript puro com Canvas 2D · sem framework · GitHub Pages</p>
       </div>
@@ -351,7 +353,7 @@ section.bloco{padding-block:40px;border-top:1.5px dashed var(--rule);display:gri
   function el(t,c,txt){var e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e}
   var rot={produto:'produto',servico:'serviço',ideia:'ideia'};
   itens.forEach(function(it){
-    var a=el('article','item'+(it.placeholder?' ph':'')+(it.destaque?' dest':''));a.dataset.tipo=it.tipo;
+    var a=el('article','item'+(it.placeholder?' ph':'')+(it.destaque?' dest':''));a.dataset.tipo=it.tipo;if(it.cor)a.style.setProperty('--c','var(--'+it.cor+')');
     var t=el('div','topo');t.append(el('span','tag',rot[it.tipo]||it.tipo),el('span','selo',it.status));a.append(t,el('h3',null,it.nome),el('p','r',it.resumo));
     if(it.pontos&&it.pontos.length){var u=el('ul');it.pontos.forEach(function(p){u.append(el('li',null,p))});a.append(u)}
     if(it.planos){var g=el('div','planos');it.planos.forEach(function(p){var d=el('div');d.append(el('b',null,p.nome),el('span',null,p.preco));g.append(d)});a.append(g)}
