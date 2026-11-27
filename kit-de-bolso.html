@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kit de Bolso do Técnico</title>
+<meta name="description" content="Kit de Bolso do Técnico, da Bantec: diagnóstico, defesa e estudo de redes e hardware no próprio celular Android, sem root. Open source, MIT, 173 testes, zero dependências.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&family=Caveat:wght@600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+:root{--paper:#EDF0F5;--sheet:#F8F9FC;--ink:#1A2140;--muted:#58607E;--grid:rgba(40,70,140,.075);--marker:#1F6FD1;--soft:rgba(31,111,209,.18);--rule:#CCD3E2;--ok:#13A67A;--warn:#E08A00;
+  --f-display:"Bricolage Grotesque","Arial Black",system-ui,sans-serif;--f-body:"Atkinson Hyperlegible",system-ui,sans-serif;--f-hand:"Caveat",cursive;--f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#11152A;--sheet:#181D36;--ink:#E7EAF6;--muted:#A1A8C6;--grid:rgba(150,170,255,.07);--marker:#62A8FF;--soft:rgba(98,168,255,.25);--rule:#2C3355;--ok:#3FD3A2;--warn:#FFB547;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#11152A;--sheet:#181D36;--ink:#E7EAF6;--muted:#A1A8C6;--grid:rgba(150,170,255,.07);--marker:#62A8FF;--soft:rgba(98,168,255,.25);--rule:#2C3355;--ok:#3FD3A2;--warn:#FFB547;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background-color:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px;color:var(--ink);font:400 17px/1.6 var(--f-body);padding:0 max(16px,env(safe-area-inset-left,0px)) 72px}
+a{color:inherit}
+a:focus-visible{outline:3px solid var(--marker);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:var(--f-display);font-weight:800;line-height:1.08;margin:0;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:1040px;margin:0 auto}
+.top{display:flex;gap:16px;align-items:center;padding-block:14px;border-bottom:2px solid var(--ink);flex-wrap:wrap}
+.top a{font-family:var(--f-mono);font-size:.82rem;text-decoration:none}
+.top .me{font:800 1.2rem var(--f-display)}
+.top .sp{margin-left:auto}
+.hand{font-family:var(--f-hand);font-weight:600;color:var(--marker);font-size:1.4rem;line-height:1.1}
+.tag{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.hl{background:linear-gradient(transparent 58%,var(--soft) 58%,var(--soft) 92%,transparent 92%)}
+.hero{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px;padding-block:48px 32px;align-items:center}
+.hero h1{font-size:clamp(2.4rem,6vw,4.2rem);letter-spacing:-.025em;margin-top:6px}
+.hero p.lead{margin-top:16px;color:var(--muted);font-size:1.12rem;max-width:56ch}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.cta a{font:500 .88rem var(--f-mono);text-decoration:none;padding:10px 16px;border:2px solid var(--ink);border-radius:12px;background:var(--sheet);box-shadow:4px 4px 0 var(--ink)}
+.cta a.go{background:var(--marker);color:#fff}
+.cta a:hover{transform:translate(-1px,-1px)}
+.term{margin:0;padding:20px;border-radius:14px;border:2px solid var(--ink);box-shadow:6px 6px 0 var(--marker);background:#0E1424;color:#CFE3FF;font:500 .8rem/1.75 var(--f-mono);white-space:pre-wrap;overflow-wrap:anywhere}
+.term .ok{color:#5BE3A1}.term .warn{color:#FFC861}.term .dim{color:#7C8AA8}
+.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:12px;padding-block:8px 8px}
+.num{background:var(--sheet);border:2px solid var(--ink);border-radius:14px;padding:14px 16px}
+.num b{display:block;font:800 2rem/1 var(--f-display);color:var(--marker)}
+.num span{font-size:.85rem;color:var(--muted)}
+section{padding-block:40px;border-top:1.5px dashed var(--rule);margin-top:32px;display:grid;gap:20px}
+.head{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
+.head h2{font-size:clamp(1.6rem,4vw,2.2rem)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:16px}
+.card{background:var(--sheet);border:1.5px solid var(--rule);border-left:4px solid var(--marker);border-radius:12px;padding:16px 18px}
+.card h3{font-size:1.15rem}
+.card p,.card li{font-size:.92rem;color:var(--muted)}
+.card p{margin-top:6px}
+.card ul{margin:8px 0 0;padding-left:1.1em;display:grid;gap:3px}
+.arch{background:var(--sheet);border:2px solid var(--ink);border-radius:14px;padding:18px;overflow-x:auto}
+.arch pre{margin:0;font:500 .78rem/1.45 var(--f-mono);min-width:560px}
+table{width:100%;border-collapse:collapse;background:var(--sheet);border:2px solid var(--ink);border-radius:12px;overflow:hidden;font-size:.92rem}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font:500 .72rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+td:first-child{font-weight:700;width:38%}
+.tl{display:grid;gap:10px}
+.tl div{display:grid;grid-template-columns:70px 1fr 60px;gap:12px;align-items:baseline;padding:10px 14px;background:var(--sheet);border:1.5px solid var(--rule);border-radius:10px}
+.tl b{font:800 1.1rem var(--f-display);color:var(--marker)}
+.tl span{font-size:.9rem;color:var(--muted)}
+.tl i{font:500 .8rem var(--f-mono);font-style:normal;text-align:right}
+.aviso{border:2px solid var(--warn);background:var(--sheet);border-radius:14px;padding:18px 20px;display:grid;gap:8px}
+.aviso h3{color:var(--warn)}
+.limites li{color:var(--muted)}
+@media (max-width:760px){.hero{grid-template-columns:1fr;padding-block:32px 16px}.term{font-size:.7rem}.tl div{grid-template-columns:56px 1fr}.tl i{grid-column:2;text-align:left}td:first-child{width:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a class="me" href="index.html">Hesblan</a>
+  <a href="index.html#wiki">← voltar à vitrine</a>
+  <a class="sp" href="https://github.com/hesblan/kit-de-bolso" target="_blank" rel="noopener">GitHub ↗</a>
+</header>
+
+<div class="hero">
+  <div>
+    <p class="tag">produto Bantec · open source · v3.3 · licença MIT</p>
+    <h1>Kit de Bolso do <span class="hl">Técnico</span></h1>
+    <p class="lead">Transforma um celular Android comum numa bancada portátil de rede e hardware, sem root. Inventaria a rede, detecta ataques, audita o roteador, analisa <code>.pcap</code>, testa o aparelho e gera relatórios em PDF, JSON e <code>.pcap</code>. Tudo em português, com uma explicação para cada alerta.</p>
+    <div class="cta">
+      <a class="go" href="https://github.com/hesblan/kit-de-bolso" target="_blank" rel="noopener">Baixar no GitHub</a>
+      <a href="https://www.linkedin.com/in/hesblan/" target="_blank" rel="noopener">Quero uma versão para minha empresa</a>
+    </div>
+  </div>
+  <pre class="term" aria-label="Exemplo de uso no terminal"><span class="dim">~ $</span> bash instalar-kit.sh
+<span class="ok">✓</span> Kit instalado · comando <b>kit</b> criado
+<span class="dim">~ $</span> kit --status
+<span class="ok">✓</span> servidor em 127.0.0.1:8080 (token ativo)
+<span class="dim">~ $</span> inventário · rede "casa"
+  192.168.0.1   roteador      <span class="ok">ok</span>
+  192.168.0.23  notebook      <span class="ok">ok</span>
+  192.168.0.41  desconhecido  <span class="warn">novo!</span>
+<span class="warn">⚠</span> ARP spoofing: 192.168.0.1 mudou de MAC  <span class="dim">[❔ o que fazer]</span>
+<span class="dim">~ $</span> kit --relatorio  → PDF · JSON · .pcap · SHA-256</pre>
+</div>
+
+<div class="nums" aria-label="Números do projeto">
+  <div class="num"><b>173</b><span>testes automatizados, todos passando</span></div>
+  <div class="num"><b>0</b><span>dependências externas (só Python padrão)</span></div>
+  <div class="num"><b>51</b><span>rotas de API</span></div>
+  <div class="num"><b>12</b><span>abas na interface</span></div>
+  <div class="num"><b>1</b><span>arquivo para instalar tudo</span></div>
+</div>
+
+<section>
+  <div class="head"><h2>Para quem e por quê</h2><span class="hand">uma tela só, no bolso</span></div>
+  <div class="grid">
+    <div class="card"><h3>Para quem</h3><p>Técnicos de campo, estudantes e entusiastas de segurança que precisam de uma ferramenta que funcione sem notebook, sem root e, na maior parte das funções, sem internet.</p></div>
+    <div class="card"><h3>O problema</h3><p>Ferramentas de diagnóstico vivem espalhadas (um app para Wi-Fi, outro para portas, Wireshark no PC) e quase nenhuma explica o que um alerta significa.</p></div>
+    <div class="card"><h3>A resposta</h3><p>Tudo junto, em português, com tutorial de primeiro uso, glossário e uma ficha em linguagem simples para cada alerta.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Diferenciais</h2></div>
+  <div class="grid">
+    <div class="card"><h3>Zero dependências</h3><p>Servidor só com a biblioteca padrão do Python; interface num único <code>index.html</code>, sem framework nem CDN. Até DNS, WHOIS e cabeçalhos HTTP têm versão embutida.</p></div>
+    <div class="card"><h3>Instala com um arquivo</h3><p><code>bash instalar-kit.sh</code> extrai, instala, cria o comando <code>kit</code>, os atalhos e abre a interface.</p></div>
+    <div class="card"><h3>Liga sozinho</h3><p>Roda em segundo plano, inicia com o Termux ou com o celular (Termux:Boot) e instala como app (PWA).</p></div>
+    <div class="card"><h3>Redes separadas</h3><p>Casa, cliente e escritório têm inventário, histórico e alertas próprios, sem falso "dispositivo novo" entre redes na mesma faixa.</p></div>
+    <div class="card"><h3>Detecções que explicam</h3><p>Cada alerta tem um botão ❔ com o que aconteceu e o que fazer.</p></div>
+    <div class="card"><h3>Laboratório seguro</h3><p>Gera ataques sintéticos como <code>.pcap</code> interno e passa pelo detector real, sem transmitir nada.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>O que tem dentro</h2></div>
+  <div class="grid">
+    <div class="card"><h3>Defesa de rede</h3><ul>
+      <li>Inventário com fabricante, autorização e alerta de aparelho novo ou MAC trocado</li>
+      <li>Detectores: deauth, ARP spoofing, DHCP falso, RA IPv6 falso, varredura, túnel DNS, tráfego e senha sem criptografia</li>
+      <li>DNS sequestrado, auditoria do roteador com UPnP e linha do tempo</li></ul></div>
+    <div class="card"><h3>Wi-Fi e celular</h3><ul>
+      <li>Canais, sinal e sugestão do melhor canal em 2,4 GHz</li>
+      <li>Autoteste do Wi-Fi com nota e detector de Wi-Fi falso (evil twin)</li>
+      <li>Mapa de sinal por cômodo e alerta de queda para 2G</li></ul></div>
+    <div class="card"><h3>Bancada de hardware</h3><ul>
+      <li>Ohm, resistores, divisor de tensão, conversores e consumo em kWh</li>
+      <li>Gerador de sinais de áudio e registro de bateria com alerta de temperatura</li>
+      <li>Testes de tela, touch, áudio, câmeras, sensores, GPS e CPU</li></ul></div>
+    <div class="card"><h3>NFC, Bluetooth e IR</h3><ul>
+      <li>Tags NFC e aparelhos BLE próprios, leitor de QR e código de barras</li>
+      <li>Controle universal infravermelho (NEC, Samsung, Sony, RC5) feito do zero</li>
+      <li>Auditoria e controle de TV pela rede</li></ul></div>
+    <div class="card"><h3>Ferramentas clássicas</h3><p>nmap (só faixas privadas), ping, traceroute, mtr, DNS, WHOIS, SSL, UPnP/mDNS, Wake-on-LAN, sub-rede e fabricante por MAC.</p></div>
+    <div class="card"><h3>Relatórios</h3><p>PDF, JSON e <code>.pcap</code> com selo SHA-256, exportação CSV, backup e linha de comando completa (<code>kit --agendar</code>, <code>--relatorio</code>, <code>--novo-token</code>...).</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Arquitetura</h2><span class="hand">simples de propósito</span></div>
+  <div class="arch"><pre>┌─────────────────┐   HTTP + token    ┌──────────────────────┐
+│  Navegador      │ ◄───────────────► │  server.py           │
+│  (index.html)   │   127.0.0.1:8080  │  Python, só stdlib   │
+└─────────────────┘                   └──────────┬───────────┘
+                                                 │
+              ferramentas do sistema (nmap, ping, dig...) ou versão embutida
+              Termux:API (Wi-Fi, celular, bateria, IR, notificação)
+                                                 │
+                                        ┌────────┴────────┐
+                                        │  kit.db (SQLite)│
+                                        └─────────────────┘
+        ▲ UDP 5123 (só 127.0.0.1), formato PCAP
+   ┌────┴──────┐
+   │ PCAPdroid │  captura sem root do tráfego do aparelho
+   └───────────┘</pre></div>
+  <table>
+    <thead><tr><th>Decisão de segurança</th><th>Por quê</th></tr></thead>
+    <tbody>
+      <tr><td>Token obrigatório em toda a API, comparado em tempo constante</td><td>Qualquer site aberto no celular alcança 127.0.0.1; sem token seria CSRF.</td></tr>
+      <tr><td>Tudo que muda estado só por POST</td><td>Um link ou imagem não dispara varredura nem envio de IR.</td></tr>
+      <tr><td>Validação do cabeçalho Host</td><td>Bloqueia DNS rebinding.</td></tr>
+      <tr><td>CSP com nonce novo a cada carregamento</td><td>Nome de rede malicioso não vira código.</td></tr>
+      <tr><td>Varreduras só em faixas privadas</td><td>Impede, por código, varrer IP público.</td></tr>
+      <tr><td>Senha do Wi-Fi avaliada só na tela</td><td>Nunca chega ao servidor nem ao banco.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <div class="head"><h2>Evolução</h2><span class="hand">15 → 173 testes</span></div>
+  <div class="tl">
+    <div><b>1.x</b><span>Servidor Python + interface única, captura via PCAPdroid, ferramentas de rede, testes de hardware.</span><i>15</i></div>
+    <div><b>2.0</b><span>Decodificação de pacotes, primeiros detectores, importação de .pcap, relatórios.</span><i>59</i></div>
+    <div><b>3.0</b><span>Redes separadas, CSP com nonce, PWA instalável, retenção de dados.</span><i>116</i></div>
+    <div><b>3.1</b><span>Comando kit, segundo plano e início automático.</span><i>127</i></div>
+    <div><b>3.2</b><span>Instalador de arquivo único; DNS e WHOIS em Python puro.</span><i>133</i></div>
+    <div><b>3.3</b><span>Abas Defesa, Bancada, Emissão e Estudo; evil twin, auditoria do roteador, IR, laboratório.</span><i>173</i></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Limitações, com honestidade</h2></div>
+  <ul class="limites">
+    <li>Sem root, o celular vê só o próprio tráfego; ataques a outros aparelhos aparecem em .pcap capturado no roteador ou em adaptador em modo monitor.</li>
+    <li>No Android 10+ a tabela ARP vem vazia; aparelhos que não respondem a nada podem não aparecer.</li>
+    <li>Os testes são simulados: Termux:API, IR, notificações e sensores ainda serão validados num Android real.</li>
+  </ul>
+  <div class="aviso">
+    <h3>Uso responsável</h3>
+    <p>O Kit é uma ferramenta de <b>defesa e estudo</b>: detecta e explica ataques, mas não executa nenhum. Use só em redes e aparelhos seus ou com autorização expressa e documentada do responsável. Varrer ou monitorar redes de terceiros sem permissão pode ser crime (no Brasil, Lei 12.737/2012 e Marco Civil da Internet).</p>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Leve para sua equipe</h2><span class="hand">a Bantec adapta</span></div>
+  <p style="color:var(--muted);max-width:62ch">O Kit é livre (MIT). A Bantec pode adaptar para a sua operação: ordem de serviço do técnico em PDF, relatórios automáticos e treinamento da equipe.</p>
+  <div class="cta">
+    <a class="go" href="https://www.linkedin.com/in/hesblan/" target="_blank" rel="noopener">Falar com a Bantec</a>
+    <a href="https://github.com/hesblan/kit-de-bolso" target="_blank" rel="noopener">Ver o código</a>
+  </div>
+</section>
+</div>
+</body>
+</html>

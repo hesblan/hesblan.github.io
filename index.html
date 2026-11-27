@@ -1,6 +1,6 @@
 <title>Hesblan</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Hesblan: cantor, desenhista e programador. Criador do LUDUS'BAN, do Banpaint e do Kit de Bolso.">
+<meta name="description" content="Hesblan Harley: CEO da Bantec, cantor, desenhista e programador. Vitrine de produtos e serviços. Criador do LUDUS'BAN, do Banpaint e do Kit de Bolso.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&family=Caveat:wght@600&family=JetBrains+Mono:wght@500&display=swap">
@@ -122,6 +122,31 @@ section.bloco{padding-block:40px;border-top:1.5px dashed var(--rule);display:gri
 .contato .btn{width:auto;flex:1 1 240px}
 .back{font-family:var(--f-mono);font-size:.8rem}
 
+
+/* ---------- Vitrine ---------- */
+.filtros{display:flex;gap:8px;flex-wrap:wrap}
+.filtros button{font:500 .8rem var(--f-mono);padding:7px 13px;border:2px solid var(--ink);border-radius:999px;background:var(--sheet);color:var(--ink);cursor:pointer}
+.filtros button[aria-pressed="true"]{background:var(--ink);color:var(--sheet)}
+.vitrine{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:20px}
+.item{--c:var(--marker);background:var(--sheet);border:2px solid var(--ink);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px;box-shadow:5px 5px 0 var(--c);position:relative}
+.item[data-tipo="servico"]{--c:var(--work)}.item[data-tipo="ideia"]{--c:var(--ludus)}
+.item.dest{grid-column:1/-1}
+.item.dest h3{font-size:1.9rem}
+.item.ph{border-style:dashed;box-shadow:none;background:transparent}
+.item .topo{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.item .selo{font:500 .68rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:var(--c);color:#fff}
+.item h3{font-size:1.45rem}
+.item p.r{color:var(--muted);font-size:.95rem}
+.item ul{margin:0;padding-left:1.1em;font-size:.9rem;display:grid;gap:3px}
+.item ul li::marker{color:var(--c)}
+.planos{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.planos div{border:1.5px solid var(--rule);border-radius:10px;padding:8px;text-align:center;background:var(--paper)}
+.planos b{display:block;font:800 .95rem var(--f-display)}.planos span{font:500 .74rem var(--f-mono);color:var(--muted)}
+.item .preco{font-family:var(--f-hand);font-size:1.3rem;color:var(--c);line-height:1.1}
+.item .acoes{margin-top:auto;display:flex;gap:8px;flex-wrap:wrap;padding-top:6px}
+.item .acoes a{font:500 .82rem var(--f-mono);text-decoration:none;padding:8px 14px;border:2px solid var(--ink);border-radius:10px;background:var(--paper)}
+.item .acoes a.go{background:var(--c);color:#fff}
+
 @media (max-width:760px){
   .intro{grid-template-columns:1fr;gap:28px;padding-block:36px 24px}
   .proj{grid-template-columns:1fr;padding:18px}
@@ -136,7 +161,7 @@ section.bloco{padding-block:40px;border-top:1.5px dashed var(--rule);display:gri
   <div class="avatar" aria-hidden="true">H<small class="hand">sua foto aqui!</small></div>
   <div style="display:grid;gap:10px">
     <h1><span class="hl">Hesblan</span></h1>
-    <p class="lead">Canto, desenho e programo. Faço jogos e ferramentas criativas que rodam direto no navegador.</p>
+    <p class="lead">Canto, desenho e programo. CEO da Bantec. Faço jogos e ferramentas criativas que rodam direto no navegador.</p>
   </div>
   <ul class="chips" aria-label="Interesses">
     <li>canto</li><li>desenho</li><li>programação</li><li>jogos</li><li>cozinha</li>
@@ -149,6 +174,10 @@ section.bloco{padding-block:40px;border-top:1.5px dashed var(--rule);display:gri
     <a class="btn" href="https://hesblan.github.io/banpaint/" target="_blank" rel="noopener">
       <img src="assets/banpaint-coelho.svg" alt="">
       <span class="txt"><b>Banpaint</b><span>App de desenho grátis, sem anúncio e sem cadastro</span></span>
+    </a>
+    <a class="btn primary" href="#wiki" data-go-after="vitrine">
+      <span class="ico" aria-hidden="true">$</span>
+      <span class="txt"><b>Vitrine Bantec</b><span>Produtos, serviços e ideias para comprar ou contratar</span></span>
     </a>
     <a class="btn primary" href="#wiki">
       <span class="ico" aria-hidden="true">W</span>
@@ -172,6 +201,7 @@ section.bloco{padding-block:40px;border-top:1.5px dashed var(--rule);display:gri
     <a class="me" href="#cartao" aria-label="Voltar ao cartão">Hesblan</a>
     <nav aria-label="Seções da wiki">
       <a href="#wiki" data-go="sobre">sobre</a>
+      <a href="#wiki" data-go="vitrine">vitrine</a>
       <a href="#wiki" data-go="projetos">projetos</a>
       <a href="#wiki" data-go="areas">áreas</a>
       <a href="#wiki" data-go="contato">contato</a>
@@ -194,6 +224,17 @@ section.bloco{padding-block:40px;border-top:1.5px dashed var(--rule);display:gri
     </aside>
   </section>
 
+  <section class="bloco" id="vitrine">
+    <div class="bloco-head"><h2>Vitrine</h2><span class="hand">o que dá para comprar, contratar ou apoiar</span></div>
+    <div class="filtros" role="group" aria-label="Filtrar vitrine">
+      <button type="button" data-f="todos" aria-pressed="true">tudo</button>
+      <button type="button" data-f="produto" aria-pressed="false">produtos</button>
+      <button type="button" data-f="servico" aria-pressed="false">serviços</button>
+      <button type="button" data-f="ideia" aria-pressed="false">ideias</button>
+    </div>
+    <div class="vitrine" id="lista-vitrine"></div>
+  </section>
+
   <section class="bloco" id="projetos">
     <div class="bloco-head"><h2>Projetos</h2><span class="hand">os que eu mais gosto de mostrar</span></div>
 
@@ -205,6 +246,7 @@ section.bloco{padding-block:40px;border-top:1.5px dashed var(--rule);display:gri
         <p>É o meu maior projeto: planejado, construído, publicado e mantido por mim, do visual ao servidor, com mais de 110 entregas desde outubro.</p>
         <div class="acoes">
           <a class="go" href="https://ludus-ban.hesblan-jobs.workers.dev" target="_blank" rel="noopener">Jogar agora</a>
+          <a href="ludusban.html">Ver o case</a>
         </div>
         <p class="meta">versão V0.1.69 · nov/2026 · JavaScript, Vite, Cloudflare Workers, SQLite · código privado</p>
       </div>
@@ -233,6 +275,7 @@ section.bloco{padding-block:40px;border-top:1.5px dashed var(--rule);display:gri
         <div class="acoes">
           <a class="go" href="https://hesblan.github.io/banpaint/" target="_blank" rel="noopener">Abrir o app</a>
           <a href="https://github.com/hesblan/banpaint" target="_blank" rel="noopener">Código</a>
+          <a href="banpaint.html">Ver o case</a>
         </div>
         <p class="meta">JavaScript puro com Canvas 2D · sem framework · GitHub Pages</p>
       </div>
@@ -257,7 +300,8 @@ section.bloco{padding-block:40px;border-top:1.5px dashed var(--rule);display:gri
           <li>Testes de tela, touch, câmeras e sensores, com relatório em PDF e JSON</li>
         </ul>
         <div class="acoes">
-          <a class="go" href="https://github.com/hesblan/kit-de-bolso" target="_blank" rel="noopener">Ver no GitHub</a>
+          <a class="go" href="kit-de-bolso.html">Ver o case</a>
+          <a href="https://github.com/hesblan/kit-de-bolso" target="_blank" rel="noopener">GitHub</a>
         </div>
         <p class="meta">Python · HTML/JS · Android com Termux · licença MIT</p>
       </div>
@@ -302,7 +346,27 @@ section.bloco{padding-block:40px;border-top:1.5px dashed var(--rule);display:gri
   </section>
 </div>
 
+<script src="dados/vitrine.js"></script>
 <script>
+(function(){
+  var L=document.getElementById('lista-vitrine'), itens=window.VITRINE||[];
+  function el(t,c,txt){var e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e}
+  var rot={produto:'produto',servico:'serviço',ideia:'ideia'};
+  itens.forEach(function(it){
+    var a=el('article','item'+(it.placeholder?' ph':'')+(it.destaque?' dest':''));a.dataset.tipo=it.tipo;if(it.cor)a.style.setProperty('--c','var(--'+it.cor+')');
+    var t=el('div','topo');t.append(el('span','tag',rot[it.tipo]||it.tipo),el('span','selo',it.status));a.append(t,el('h3',null,it.nome),el('p','r',it.resumo));
+    if(it.pontos&&it.pontos.length){var u=el('ul');it.pontos.forEach(function(p){u.append(el('li',null,p))});a.append(u)}
+    if(it.planos){var g=el('div','planos');it.planos.forEach(function(p){var d=el('div');d.append(el('b',null,p.nome),el('span',null,p.preco));g.append(d)});a.append(g)}
+    if(it.stack)a.append(el('p','tag',it.stack));
+    if(it.preco)a.append(el('p','preco',it.preco));
+    if(it.acoes&&it.acoes.length){var c=el('div','acoes');it.acoes.forEach(function(x){var k=el('a',x.principal?'go':'',x.rotulo);k.href=x.href;if(!x.mesmaAba){k.target='_blank';k.rel='noopener'}c.append(k)});a.append(c)}
+    L.append(a);
+  });
+  document.querySelectorAll('.filtros button').forEach(function(b){b.addEventListener('click',function(){
+    var f=b.dataset.f;document.querySelectorAll('.filtros button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+    L.querySelectorAll('.item').forEach(function(i){i.hidden=f!=='todos'&&i.dataset.tipo!==f});
+  })});
+})();
 (function(){
   var cartao=document.getElementById('cartao'), wiki=document.getElementById('wiki');
   function show(){
@@ -319,6 +383,7 @@ section.bloco{padding-block:40px;border-top:1.5px dashed var(--rule);display:gri
       if(el) el.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
     });
   });
-  window.addEventListener('hashchange',show); show();
+  document.querySelectorAll('[data-go-after]').forEach(function(a){a.addEventListener('click',function(){pending=a.getAttribute('data-go-after')})});
+  window.addEventListener('hashchange',function(){show();if(pending){var el=document.getElementById(pending);pending=null;if(el)el.scrollIntoView()}}); show();
 })();
 </script>
